@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!-- import -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    
+    <script type="text/babel">
+
+        const button = <button>Good job!</button>;
+        const NAME = 'Kim';
+        const paragraph = <p>My name's {NAME}</p>;
+
+        const sock = 10;
+        const shirt = 8;
+        const total = sock + shirt*2;
+        const underscore = '_';
+        const replace = underscore.replace(underscore, total);
+        console.log('Total : $', replace);
+        
+        const shipping = 5;
+        const totalCost = total + shipping;
+
+        const date = dayjs().format('MMMM D');
+        const currentTime = <p>Current time : {dayjs().format('HH:mm:ss')}</p>;
+        console.log(date);
+
+        const div = (
+            <div>
+                {button}
+                {paragraph}
+                <br></br>
+
+                <div>
+                    <p>Sock : {sock}</p>
+                    <p>Shirt : {shirt}</p>
+                    <p>Total cost : {total}</p>
+                </div>
+                <br></br>
+                
+                <div>
+                    <p>Product : {total}</p>
+                    <div>Shipping : {shipping}</div>
+                    <p>Total cost with shipping : {totalCost}</p>
+                    <button>Checkout</button>
+                </div>
+                <br></br>
+
+                <div>
+                    <p>Today's {date}</p>
+                    {currentTime}
+                </div>
+            </div>
+
+            
+        );
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(div);
+
+        setInterval(() => {
+            const currentTime = <p>Current time : {dayjs().format('HH:mm:ss')}</p>;
+            root.render(currentTime);
+        }, 1000);
+
+    </script>
+  </body>
+
+</html>
