@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E-Commerce</title>
+  </head>
+
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!-- import -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    
+    <script type="text/babel">
+
+        function ProductDetails({name, price, discount, image}) {
+
+            const checkDiscount = discount != null ? false : true;
+
+            const result = checkDiscount ? <p>Price: ${price}</p> : <p><del>Price: ${price}</del></p>;
+
+            console.log(image);
+            
+            return (
+                <div>
+                    <img src={`/src/${image}`} width="100" />
+                    <p>{name}</p>
+                    {result}
+                    {discount && <DiscountPrice discount={discount} />}
+                    <button>Add to Cart</button>
+                    <br></br><br></br>
+                </div>
+            );   
+        }
+
+        function DiscountPrice({discount}) {
+            return (
+                <p>Discount: ${discount}</p>
+            );
+        }
+
+        function App() {
+            return (
+                <>
+                    <ProductDetails 
+                        name="Nba Sock"
+                        price={30.90}
+                        image="nba_sock.jpeg"
+                    />
+                    <ProductDetails 
+                        name="Basketball"
+                        price={5.99}
+                        image="basketball.webp"
+                    />
+                    <ProductDetails 
+                        name="NBA Jersy"
+                        price={29.99}
+                        image="jersy_knicks.avif"
+                    />
+                    <ProductDetails 
+                        name="Snickers"
+                        price={99.99}
+                        discount={59.99}
+                        image="snickers.avif"
+                    />
+                </>
+            );
+        }
+
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render(<App />);
+
+    </script>
+  </body>
+
+</html>
